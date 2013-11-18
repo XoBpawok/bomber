@@ -29,7 +29,7 @@
 			Map.prototype = {
 				sizeX: 20,
 				sizeY: 20,
-				objList = []
+				objList: [],
 			}
 
 			var Player = Class.create(Obj, {
@@ -62,13 +62,34 @@
 			});
 
 
-
+			Map.prototype.createObj = function (opts) {
+				var obj;
+				switch(opts.type) {
+					case 'player':
+						obj = new Player();
+					case 'bomb': 
+						obj = new Bomb();
+					case 'sepBlock':
+						obj = new BlockSeparator();
+					default:
+						obj = new Obj();
+				}
+				obj.map = this;
+				return obj;	
+			}
 
 			Player.prototype.plainBomb = function() {
+
+
+
 				if (this.bombPlained.length !== this.bombLimit) {
-					this.bombPlained.push(new Bomb({
+
+					var bomb = this.map.createObj({
+						type:'bomb',
 						owner: this
-					}));
+					});
+
+					this.bombPlained.push(bomb);
 				}
 
 				console.log('bomb is plained');
@@ -85,10 +106,10 @@
 				var player = self.owner;
 
 				console.log('booom!');
-
+/*
 				for (var i = 0; i < player.bombRange + 1; i++) {
 					if (position.x - i)
-				}
+				}*/
 
 
 
@@ -101,76 +122,14 @@
 
 
 			var map = new Map();
-			var p = new Player();
+			var p = map.createObj({
+				type:'player',
+				position: {
+					x:5,
+					y:5
+				}
+				});
 			p.plainBomb();
-
-
-/*
-
-			var Bomb = function (opts) {
-				self = this;
-				self.timer = 3000;
-				self.owner = opts.owner;
-				self.position = self.owner.position;
-				self.onExplode = function () {
-					console.log('onexplode default handler');
-				}
-				setTimeout(function () {self.explode(self)}, self.timer);
-			};
-
-			var Block = function (opts) {
-				this.type = opts.type;
-			}
-
-			Block.prototype.isDestroyable = function () {
-				// 1 - destroyable
-				// 0 - not destroyable
-				// -1 - avoidable
-
-				switch(this.type) {
-					case 'player':
-					case 'briks':
-					case 'monster':
-						return 1;
-					case 'sepBlock':
-						return: 0;
-					default:
-						return -1;
-				}
-			}
-
-
-			Bomb.prototype.explode = function (self) {
-				var player = self.owner;
-
-				console.log('booom!');
-				self.onExplode();
-				console.log('bomb exploded');
-
-				// recalculate bombs count after exploding
-				player.bombsPlained.remove(player.bombsPlained.indexOf(bomb), player.bombsPlained.indexOf(bomb));
-				console.log(player.bombsPlained);
-
-				function explotion () {
-					var range = self.range,
-						i = 0;
-					for (i = 0; i < range; i++) {
-						
-					};
-				}
-			}
-
-
-			*/
-
-
-
-
-
-
-
-
-
 
 
 			Array.prototype.remove = function(from, to) {
