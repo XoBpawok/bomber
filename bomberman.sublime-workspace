@@ -1,0 +1,787 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"pro",
+				"proto	Prototype"
+			],
+			[
+				"set",
+				"timers.setTimeout(callback, after);"
+			],
+			[
+				"sc",
+				"script	Tag"
+			],
+			[
+				"readdir",
+				"fs.readdir(path, callback);"
+			],
+			[
+				"on",
+				"onload	Attr"
+			],
+			[
+				"no",
+				"normal"
+			],
+			[
+				"inli",
+				"inline-block"
+			],
+			[
+				"wid",
+				"width"
+			],
+			[
+				"back",
+				"backgroundColor"
+			],
+			[
+				"ba",
+				"background"
+			],
+			[
+				"mouse",
+				"mousedown	mousedown"
+			],
+			[
+				"pos",
+				"postDataChunck  (argument)"
+			],
+			[
+				"rarse",
+				"url.parse(url, parseQueryString, slashesDenoteHost);"
+			],
+			[
+				"te",
+				"text-align"
+			],
+			[
+				"input",
+				"input	input - text"
+			],
+			[
+				"bo",
+				"border"
+			],
+			[
+				"req",
+				"require.resolve(request);"
+			],
+			[
+				"fin",
+				"findPlace"
+			],
+			[
+				"scri",
+				"script	Tag"
+			],
+			[
+				"a",
+				"array"
+			],
+			[
+				"call",
+				"callback"
+			],
+			[
+				"num",
+				"numArray"
+			],
+			[
+				"re",
+				"result"
+			],
+			[
+				"Stri",
+				"StringReverse"
+			],
+			[
+				"con",
+				"console"
+			],
+			[
+				"to",
+				"toDecimal"
+			],
+			[
+				"n",
+				"number"
+			],
+			[
+				"fi",
+				"fibonacciSequence"
+			],
+			[
+				"fic",
+				"fibonacciSequence"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "index.html",
+			"settings":
+			{
+				"buffer_size": 2547,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "Packages/Nodejs/Nodejs.sublime-build",
+	"command_palette":
+	{
+		"height": 127.0,
+		"selected_items":
+		[
+			[
+				"Packa",
+				"Preferences: Package Control Settings – Default"
+			],
+			[
+				"Prototy",
+				"Snippet: Prototype"
+			],
+			[
+				"Package",
+				"Package Control: Install Package"
+			],
+			[
+				"html",
+				"Snippet: Simple HTML5 Boilerplate"
+			],
+			[
+				"html	",
+				"Snippet: Simple HTML5 Boilerplate"
+			],
+			[
+				"form",
+				"Format Code"
+			],
+			[
+				"jshint",
+				"JSHint"
+			],
+			[
+				"forma",
+				"Format: Javascript"
+			],
+			[
+				"for",
+				"Format Code"
+			],
+			[
+				"html5",
+				"Set Syntax: HTML5"
+			],
+			[
+				"hint",
+				"JSHint"
+			],
+			[
+				"package",
+				"Package Control: Install Package"
+			],
+			[
+				"Fo",
+				"Format: Javascript"
+			],
+			[
+				"Forma",
+				"Format: Javascript"
+			],
+			[
+				"Form",
+				"Format Code"
+			],
+			[
+				"format",
+				"Format: Javascript"
+			],
+			[
+				"Forms",
+				"Format: Javascript"
+			],
+			[
+				"forma	",
+				"Format: Javascript"
+			],
+			[
+				"git commit",
+				"Set Syntax: Git Commit Message"
+			],
+			[
+				"git status",
+				"Git: Status"
+			],
+			[
+				"git add",
+				"Git: Add..."
+			],
+			[
+				"git sta",
+				"Git: Status"
+			],
+			[
+				"git",
+				"Set Syntax: SublimeGit Status"
+			],
+			[
+				"pac",
+				"Package Control: Install Package"
+			],
+			[
+				"sublimel",
+				"Preferences: SublimeLinter Settings – User"
+			],
+			[
+				"git push",
+				"Git: Push with options…"
+			],
+			[
+				"git ",
+				"Git: Status"
+			],
+			[
+				"git add	",
+				"Git: Quick Add"
+			],
+			[
+				"",
+				"Convert Case: Lower Case"
+			],
+			[
+				"java",
+				"Format: Javascript"
+			],
+			[
+				"packa",
+				"Package Control: Install Package"
+			],
+			[
+				"PAck",
+				"Package Control: Install Package"
+			],
+			[
+				"Packa	",
+				"Package Control: Install Package"
+			],
+			[
+				"PAcka",
+				"Package Control: Install Package"
+			],
+			[
+				"Pa",
+				"Package Control: Remove Package"
+			],
+			[
+				"pack",
+				"Package Control: Add Repository"
+			],
+			[
+				"pa",
+				"Package Control: Add Repository"
+			]
+		],
+		"width": 512.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"git clone https://github.com/tanepiper/SublimeText-Nodejs \"%APPDATA%\\Sublime Text 2\\Packages\\Nodejs\"",
+			"`git clone https://github.com/tanepiper/SublimeText-Nodejs \"%APPDATA%\\Sublime Text 2\\Packages\\Nodejs\"`",
+			"git commit -m \"made little changes to tooltip. added nodejs files\"",
+			"import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), 'wb').write(urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ','%20')).read())",
+			"nodejs index.js",
+			"node",
+			"nodejs",
+			"nodejs nodeHelloWorld.js",
+			"nodejs nodeHelloWorl",
+			"nodejs nodeHelloWorld",
+			"nodejs nodeHelloWorld.js",
+			"node nodeHelloWorld.js",
+			"console.log(\"Hello World\");",
+			"node nodeHelloWorld.js",
+			"showmenu",
+			"menu show",
+			"git status",
+			"git init",
+			"git branch master checkout",
+			"git ",
+			"git stat",
+			"git stats",
+			"git status",
+			"$git fetch upstream",
+			"git fetch upstream",
+			"close",
+			"exit",
+			"import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), 'wb').write(urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ','%20')).read())"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/Mykola.Kordiak/AppData/Roaming/Sublime Text 3/Packages/Package Control/Package Control.sublime-settings",
+		"/C/Users/Mykola.Kordiak/Documents/sublimeProjects/bomberman/prototype.js",
+		"/C/Users/Mykola.Kordiak/Documents/sublimeProjects/bomberman/jquery.js",
+		"/C/Users/Mykola.Kordiak/Desktop/search/search/js/modules/search.js",
+		"/C/Users/Mykola.Kordiak/Desktop/search/search/js/modules/request.js",
+		"/C/Users/Mykola.Kordiak/Desktop/search/search/js/require.config.js",
+		"/C/Users/Mykola.Kordiak/Desktop/search/search/js/modules/results.js",
+		"/C/Users/Mykola.Kordiak/Desktop/search/search/css/main.css",
+		"/C/Users/Mykola.Kordiak/Documents/sublimeProjects/imdbSearch/search/css/less/styles.less",
+		"/C/Users/Mykola.Kordiak/Documents/sublimeProjects/imdbSearch/search/js/modules/searchRender.js",
+		"/C/Users/Mykola.Kordiak/Desktop/search/search/css/sass/search-result-details.scss",
+		"/C/Users/Mykola.Kordiak/Desktop/search/search/js/templates/results-item-details.html",
+		"/C/Users/Mykola.Kordiak/Desktop/search/search/js/templates/results-list.html",
+		"/C/Users/Mykola.Kordiak/Documents/sublimeProjects/imdbSearch/search/js/templates/response-item-details-template.js",
+		"/C/Users/Mykola.Kordiak/Desktop/search/search/css/sass/search-results.scss",
+		"/C/Users/Mykola.Kordiak/Desktop/search/search/js/templates/results-item-details.js",
+		"/C/Users/Mykola.Kordiak/Desktop/search/search/css/sass/search-result-details",
+		"/C/Users/Mykola.Kordiak/Documents/sublimeProjects/miniFootballCUP/src/js/main.js",
+		"/C/Users/Mykola.Kordiak/Documents/sublimeProjects/miniFootballCUP/src/js/require.config.js",
+		"/C/Users/Mykola.Kordiak/Documents/sublimeProjects/miniFootballCUP/src/index.html",
+		"/C/Users/Mykola.Kordiak/Documents/sublimeProjects/miniFootballCUP/src/package.json",
+		"/C/Users/Mykola.Kordiak/Documents/sublimeProjects/miniFootballCUP/src/js/vendor/jQuery.js",
+		"/C/Users/Mykola.Kordiak/Documents/sublimeProjects/miniFootballCUP/src/js/vendor/BackBone.js",
+		"/C/Users/Mykola.Kordiak/Documents/sublimeProjects/miniFootballCUP/src/js/vendor/underScore.js",
+		"/C/Users/Mykola.Kordiak/Documents/sublimeProjects/miniFootballCUP/src/js/vendor/require.js",
+		"/C/Users/Mykola.Kordiak/Documents/sublimeProjects/miniFootballCUP/src/js/vendor/handlebars.js",
+		"/C/Users/Mykola.Kordiak/Documents/sublimeProjects/imdbSearch/search/js/main.js",
+		"/C/Users/Mykola.Kordiak/Documents/sublimeProjects/imdbSearch/search/index.html",
+		"/C/Users/Mykola.Kordiak/Documents/sublimeProjects/imdbSearch/search/js/modules/requests.js",
+		"/C/Users/Mykola.Kordiak/Documents/sublimeProjects/imdbSearch/search/js/requirejs.config.js",
+		"/C/Users/Mykola.Kordiak/Documents/sublimeProjects/imdbSearch/search/js/templates/response-list-template.js",
+		"/C/Users/Mykola.Kordiak/Documents/sublimeProjects/imdbSearch/Gruntfile.js",
+		"/C/Users/Mykola.Kordiak/Documents/sublimeProjects/imdbSearch/search/js/templates/resonse-list-template.js",
+		"/C/Users/Mykola.Kordiak/Documents/sublimeProjects/imdbSearch/search/js/require.config.js",
+		"/C/Users/Mykola.Kordiak/Documents/sublimeProjects/imdbSearch/search/js/vendor/requirejs-text",
+		"/C/Users/Mykola.Kordiak/Documents/sublimeProjects/imdbSearch/search/js/modules/responses.js",
+		"/C/Users/Mykola.Kordiak/Documents/sublimeProjects/imdbSearch/src",
+		"/C/Users/Mykola.Kordiak/Documents/sublimeProjects/imdbSearch/search/js/modules/searchRendering.js",
+		"/C/Users/Mykola.Kordiak/Documents/sublimeProjects/imdbSearch/search/js/vendor/mustache.js",
+		"/C/Users/Mykola.Kordiak/Documents/sublimeProjects/imdbSearch/search/js/vendor/require.js",
+		"/C/Users/Mykola.Kordiak/Documents/sublimeProjects/imdbSearch/search/js/vendor/jQuery.js",
+		"/C/Users/Mykola.Kordiak/Documents/sublimeProjects/imdbSearch/search/css/styles.less",
+		"/C/Users/Mykola.Kordiak/Documents/sublimeProjects/imdbSearch/search/css/less",
+		"/C/Users/Mykola.Kordiak/Documents/sublimeProjects/imdbSearch/package.json",
+		"/C/Users/Mykola.Kordiak/Documents/sublimeProjects/algorithms/grunt/index.js",
+		"/C/Users/Mykola.Kordiak/Documents/sublimeProjects/algorithms/grunt/package.json.txt",
+		"/C/Users/Mykola.Kordiak/Documents/sublimeProjects/algorithms/grunt/package.json",
+		"/C/Users/Mykola.Kordiak/Documents/sublimeProjects/algorithms/js/node/server.js",
+		"/C/Users/Mykola.Kordiak/Documents/sublimeProjects/algorithms/js/node/router.js",
+		"/C/Users/Mykola.Kordiak/Documents/sublimeProjects/algorithms/js/node/requestHandlers.js",
+		"/C/Users/Mykola.Kordiak/Documents/sublimeProjects/algorithms/js/jQuery.js",
+		"/C/Users/Mykola.Kordiak/Documents/sublimeProjects/algorithms/js/node/index.js",
+		"/C/Users/Mykola.Kordiak/Documents/sublimeProjects/algorithms/js/main.js",
+		"/C/Users/Mykola.Kordiak/Documents/sublimeProjects/algorithms/js/tooltip.js",
+		"/C/Users/Mykola.Kordiak/Documents/sublimeProjects/algorithms/index.html",
+		"/C/Users/Mykola.Kordiak/Documents/sublimeProjects/algorithms/js/require.config.js",
+		"/C/Users/Mykola.Kordiak/Documents/sublimeProjects/algorithms/js/require.js",
+		"/C/Users/Mykola.Kordiak/Documents/sublimeProjects/algorithms/js/requier.js",
+		"/C/Users/Mykola.Kordiak/Downloads/jscolor-1.4.1/jscolor/jscolor.js",
+		"/C/Users/Mykola.Kordiak/PhpstormProjects/OfficeCenterCustomizingElements/css/styles.css",
+		"/C/Users/Mykola.Kordiak/AppData/Roaming/Sublime Text 3/Packages/SublimeLinter/SublimeLinter.sublime-settings",
+		"/C/Users/Mykola.Kordiak/AppData/Roaming/Sublime Text 3/Packages/Default/Default (Windows).sublime-keymap",
+		"/C/Users/Mykola.Kordiak/AppData/Roaming/Sublime Text 3/Packages/User/Default (Windows).sublime-keymap",
+		"/C/Users/Mykola.Kordiak/AppData/Roaming/Sublime Text 3/Packages/User/Package Control.sublime-settings",
+		"/C/Users/Mykola.Kordiak/Documents/sublimeProjects/algorithms/js/linter.js",
+		"/C/Users/Mykola.Kordiak/Documents/sublimeProjects/algorithms/js/min/linter.min.js",
+		"/C/Users/Mykola.Kordiak/Documents/sublimeProjects/algorithms/temp.html",
+		"/C/Users/Mykola.Kordiak/Documents/sublimeProjects/algorithms/js/temp.js",
+		"/C/Users/Mykola.Kordiak/Documents/sublimeProjects/algorithms/js/lib.js",
+		"/C/Users/Mykola.Kordiak/Documents/sublimeProjects/algorithms/js/nodeHelloWorld.js",
+		"/C/Users/Mykola.Kordiak/AppData/Roaming/Sublime Text 3/Packages/User/SublimeLinter.sublime-settings",
+		"/C/Users/Mykola.Kordiak/AppData/Roaming/Sublime Text 3/Packages/SublimeLinter/README.md",
+		"/C/Users/Mykola.Kordiak/AppData/Roaming/Sublime Text 3/Packages/User/bh_core.sublime-settings",
+		"/C/Users/Mykola.Kordiak/Documents/sublimeProjects/algorithms/README",
+		"/C/Users/Mykola.Kordiak/AppData/Roaming/Sublime Text 3/Packages/LESS/LESS.sublime-settings",
+		"/C/Users/Mykola.Kordiak/AppData/Roaming/Sublime Text 3/Packages/Git/Git.sublime-settings",
+		"/C/Users/Mykola.Kordiak/AppData/Roaming/Sublime Text 3/Packages/User/SideBarEnhancements/Open With/Side Bar.sublime-menu",
+		"/C/Users/Mykola.Kordiak/AppData/Roaming/Sublime Text 3/Packages/SideBarEnhancements/CHANGELOG",
+		"/C/Users/Mykola.Kordiak/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/C/Users/Mykola.Kordiak/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 90.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"    <",
+			"30px",
+			"',\n",
+			"            '",
+			"imdbID",
+			"response",
+			"Search",
+			"linter",
+			"contantClassName",
+			"linterClass",
+			"linter.",
+			"id=",
+			"side",
+			"+b",
+			"script",
+			"\n<",
+			"}\n",
+			">\n",
+			"src"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"Request",
+			"tooltip",
+			"contentClassName",
+			"contantClassName",
+			""
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2547,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1847,
+								1847
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close"
+							],
+							"codeintel": true,
+							"codeintel_config":
+							{
+								"JavaScript":
+								{
+									"codeintel_max_recursive_dir_depth": 2,
+									"codeintel_scan_files_in_project": false,
+									"javascriptExtraPaths":
+									[
+									]
+								},
+								"PHP":
+								{
+									"codeintel_max_recursive_dir_depth": 5,
+									"codeintel_scan_files_in_project": false,
+									"phpExtraPaths":
+									[
+									]
+								},
+								"Python":
+								{
+									"env":
+									{
+									}
+								}
+							},
+							"codeintel_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_live": true,
+							"codeintel_live_enabled_languages":
+							[
+								"JavaScript",
+								"Mason",
+								"XBL",
+								"XUL",
+								"RHTML",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"XSLT",
+								"Django",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Smarty",
+								"Node.js",
+								"Tcl",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_max_recursive_dir_depth": 10,
+							"codeintel_scan_exclude_dir":
+							{
+								"JavaScript":
+								[
+									"/build/",
+									"/min/"
+								]
+							},
+							"codeintel_scan_files_in_project": true,
+							"codeintel_selected_catalogs":
+							[
+								"PyWin32",
+								"jQuery",
+								"Rails"
+							],
+							"codeintel_snippets": true,
+							"codeintel_syntax_map":
+							{
+								"Python Django": "Python"
+							},
+							"codeintel_tooltips": "popup",
+							"sublime_auto_complete": true,
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 1008.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 34.0
+	},
+	"input":
+	{
+		"height": 30.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": false,
+	"output.exec":
+	{
+		"height": 315.0
+	},
+	"output.git-commit":
+	{
+		"height": 94.0
+	},
+	"project": "bomberman.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": false,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"jq",
+				"js\\jQuery.js"
+			],
+			[
+				"too",
+				"js\\tooltip.js"
+			],
+			[
+				"main",
+				"js\\main.js"
+			],
+			[
+				"inde",
+				"index.html"
+			],
+			[
+				"tool",
+				"js\\tooltip.js"
+			],
+			[
+				"js/node",
+				"js\\node\\server.js"
+			],
+			[
+				"js/node/.",
+				"js\\node\\index.js"
+			],
+			[
+				"mai",
+				"js\\main.js"
+			],
+			[
+				"in",
+				"js\\node\\index.js"
+			],
+			[
+				"jquer",
+				"js\\jQuery.js"
+			],
+			[
+				"index",
+				"js\\node\\index.js"
+			],
+			[
+				"/",
+				"js\\node\\server.js"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+		],
+		"width": 392.0
+	},
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": false,
+	"side_bar_width": 220.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

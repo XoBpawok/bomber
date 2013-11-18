@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>
+			bomberman
+		</title>
+		<link rel="stylesheet" href="">
+		<script src='prototype.js'>
+				
+		</script>
+	</head>
+	<body>
+		<canvas width='1000' height='500'>
+		</canvas>
+		<script type="text/javascript">
+			var Obj = Class.create();
+			Obj.prototype = {
+				position: {
+					x: 0,
+					y: 0
+				},
+				destroyable: -1,
+				initialize: function() {}
+			}
+
+			var Map = Class.create();
+			Map.prototype = {
+				sizeX: 20,
+				sizeY: 20,
+				objList = []
+			}
+
+			var Player = Class.create(Obj, {
+				destroyable: 1,
+				bombLimit: 2,
+				bombPlained: [],
+				bombRange: 3
+			});
+
+			var Bomb = Class.create(Obj, {
+				initialize: function(opts) {
+					this.owner = opts.owner;
+					this.position = Object.clone(this.owner.position);
+					var self = this;
+					setTimeout(function () {
+						self.explode(self)
+					}, this.timer);
+				},
+				destroyable: 1,
+				owner: {},
+				timer: 3000
+			});
+
+			var Block = Class.create(Obj, {
+				destroyable: 1
+			});
+
+			var BlockSeparator = Class.create(Block, {
+				destroyable: 0
+			});
+
+
+
+
+			Player.prototype.plainBomb = function() {
+				if (this.bombPlained.length !== this.bombLimit) {
+					this.bombPlained.push(new Bomb({
+						owner: this
+					}));
+				}
+
+				console.log('bomb is plained');
+				console.log('bombs list:');
+				console.log(this.bombPlained);
+			};
+			Player.prototype.move = function(x, y) {
+				this.position.x = x;
+				this.position.y = y;
+			}
+
+
+			Bomb.prototype.explode = function(self) {
+				var player = self.owner;
+
+				console.log('booom!');
+
+				for (var i = 0; i < player.bombRange + 1; i++) {
+					if (position.x - i)
+				}
+
+
+
+				console.log('bomb exploded');
+
+				// recalculate bombs count after exploding
+				player.bombPlained.remove(player.bombPlained.indexOf(self), player.bombPlained.indexOf(self));
+				console.log(player.bombPlained);
+			}
+
+
+			var map = new Map();
+			var p = new Player();
+			p.plainBomb();
+
+
+/*
+
+			var Bomb = function (opts) {
+				self = this;
+				self.timer = 3000;
+				self.owner = opts.owner;
+				self.position = self.owner.position;
+				self.onExplode = function () {
+					console.log('onexplode default handler');
+				}
+				setTimeout(function () {self.explode(self)}, self.timer);
+			};
+
+			var Block = function (opts) {
+				this.type = opts.type;
+			}
+
+			Block.prototype.isDestroyable = function () {
+				// 1 - destroyable
+				// 0 - not destroyable
+				// -1 - avoidable
+
+				switch(this.type) {
+					case 'player':
+					case 'briks':
+					case 'monster':
+						return 1;
+					case 'sepBlock':
+						return: 0;
+					default:
+						return -1;
+				}
+			}
+
+
+			Bomb.prototype.explode = function (self) {
+				var player = self.owner;
+
+				console.log('booom!');
+				self.onExplode();
+				console.log('bomb exploded');
+
+				// recalculate bombs count after exploding
+				player.bombsPlained.remove(player.bombsPlained.indexOf(bomb), player.bombsPlained.indexOf(bomb));
+				console.log(player.bombsPlained);
+
+				function explotion () {
+					var range = self.range,
+						i = 0;
+					for (i = 0; i < range; i++) {
+						
+					};
+				}
+			}
+
+
+			*/
+
+
+
+
+
+
+
+
+
+
+
+			Array.prototype.remove = function(from, to) {
+				var rest = this.slice((to || from) + 1 || this.length);
+				this.length = from < 0 ? this.length + from : from;
+				return this.push.apply(this, rest);
+			};
+		</script>
+	</body>
+
+</html>
