@@ -25,12 +25,11 @@
 				initialize: function() {}
 			}
 
-			var Map = Class.create();
-			Map.prototype = {
+			var Map = Class.create({
 				sizeX: 20,
 				sizeY: 20,
 				objList: [],
-			}
+			});
 
 			var Player = Class.create(Obj, {
 				destroyable: 1,
@@ -66,13 +65,16 @@
 				var obj;
 				switch(opts.type) {
 					case 'player':
-						obj = new Player();
+						obj = new Player(opts);
+						break;
 					case 'bomb': 
-						obj = new Bomb();
+						obj = new Bomb(opts);
+						break;
 					case 'sepBlock':
-						obj = new BlockSeparator();
+						obj = new BlockSeparator(opts);
+						break;
 					default:
-						obj = new Obj();
+						obj = new Obj(opts);
 				}
 				obj.map = this;
 				return obj;	
