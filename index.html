@@ -21,14 +21,43 @@
 					x: 0,
 					y: 0
 				},
+				type: 0,
 				destroyable: -1,
-				initialize: function() {}
+				initialize: function(opts) {
+					this.type = opts.type;
+				}
+			}
+
+			var Cell = Class.create();
+			Cell.prototype = {
+				objects: [],
+				initialize: function (opts) {
+				}
 			}
 
 			var Map = Class.create({
-				sizeX: 20,
-				sizeY: 20,
 				objList: [],
+				cells: [],
+				initialize: function (opts) {
+					if (typeof opts.grid !== 'undefined') {
+						for (var i = 0; i < opts.grid.length; i++) {
+							this.cells[i] = new Array(opts.grid[i].length);
+							for (var j = 0; j < opts.grid[i].length; j++) {
+								this.cells[i][j] = new Cell();
+								this.cells[i][j].objects.push(
+									this.createObj({
+										type: opts.grid[i][j],
+										position: {
+											x: i,
+											y: j
+										}
+									})
+								);
+							};
+						};
+					}
+					
+				}
 			});
 
 			var Player = Class.create(Obj, {
@@ -43,6 +72,7 @@
 					this.owner = opts.owner;
 					this.position = Object.clone(this.owner.position);
 					var self = this;
+					this.owner.bombPlained.push(self);
 					setTimeout(function () {
 						self.explode(self)
 					}, this.timer);
@@ -60,6 +90,11 @@
 				destroyable: 0
 			});
 
+			Cell.prototype.destroy = function (opts) {
+				for (var i in this.objects) {
+					return this.objects[i].destroy();
+				}
+			}
 
 			Map.prototype.createObj = function (opts) {
 				var obj;
@@ -80,24 +115,39 @@
 				return obj;	
 			}
 
+			Map.prototype.getPlayer = function (n) {
+				for (var i = 0; i < this.cells.length; i++) {
+					for (var j = 0; j < this.cells[i].length; j++) {
+						for (var k in this.cells[i][j].objects) {
+							if (this.cells[i][j].objects[k].type === 'player') {
+								n--;
+								if (!n) {
+									return this.cells[i][j].objects[k];
+								}
+							}
+						}
+					}
+				}
+			}
+
+			Map.prototype.getLine = function () {
+
+			}
+
 			Player.prototype.plainBomb = function() {
-
-
-
 				if (this.bombPlained.length !== this.bombLimit) {
 
 					var bomb = this.map.createObj({
 						type:'bomb',
 						owner: this
 					});
-
-					this.bombPlained.push(bomb);
 				}
 
 				console.log('bomb is plained');
 				console.log('bombs list:');
 				console.log(this.bombPlained);
 			};
+
 			Player.prototype.move = function(x, y) {
 				this.position.x = x;
 				this.position.y = y;
@@ -106,13 +156,33 @@
 
 			Bomb.prototype.explode = function(self) {
 				var player = self.owner;
+				var mapGrid = player.map.cells;
+				var x = this.position.x,
+					y = this.position.y;
 
 				console.log('booom!');
 /*
-				for (var i = 0; i < player.bombRange + 1; i++) {
-					if (position.x - i)
-				}*/
-
+				for (var i = 1; i < player.bombRange + 1; i++) {
+					if (x > 0 && x < mapGrid.length - 1) {
+						mapGrid.[x - i][y] = mapGrid.[x - i][y].Destroy();
+					}
+				}
+				for (var i = 1; i < player.bombRange + 1; i++) {
+					if (x > 0 && x < mapGrid.length - 1) {
+						mapGrid.[x + i][y] = mapGrid.[x + i][y].Destroy();
+					}
+				}
+				for (var i = 1; i < player.bombRange + 1; i++) {
+					if (x > 0 && x < mapGrid[x].length - 1) {
+						mapGrid.[x][y - 1] = mapGrid.[x][y - 1].Destroy();
+					}
+				}
+				for (var i = 1; i < player.bombRange + 1; i++) {
+					if (x > 0 && x < mapGrid[x].length - 1) {
+						mapGrid.[x][y + 1] = mapGrid.[x][y + 1].Destroy();
+					}
+				}
+*/
 
 
 				console.log('bomb exploded');
@@ -123,15 +193,24 @@
 			}
 
 
-			var map = new Map();
-			var p = map.createObj({
-				type:'player',
-				position: {
-					x:5,
-					y:5
-				}
-				});
-			p.plainBomb();
+			var map = new Map({
+				grid: [
+					['player',0,0,0,0,0,0,0,0,0,0],
+					[0,'sepBlock',0,'sepBlock',0,'sepBlock',0,'sepBlock',0,'sepBlock',0],
+					['sepBlock','brick','brick','brick','brick','brick','brick','brick','brick','brick','brick'],
+					['brick','sepBlock',0,'sepBlock',0,'sepBlock',0,'sepBlock',0,'sepBlock',0],
+					['brick','brick','brick','brick','brick','brick','brick','brick','brick','brick','brick'],
+					[0,'sepBlock',0,'sepBlock',0,'sepBlock',0,'sepBlock',0,'sepBlock',0],
+					['brick','brick','brick','brick','brick','brick','brick','brick','brick','brick','brick'],
+					[0,'sepBlock',0,'sepBlock',0,'sepBlock',0,'sepBlock',0,'sepBlock',0],
+					['brick','brick','brick','brick','brick','brick','brick','brick','brick','brick','brick'],
+					[0,'sepBlock',0,'sepBlock',0,'sepBlock',0,'sepBlock',0,'sepBlock',0],
+					[0,0,0,0,0,0,0,0,0,0,0]
+				]
+			});
+			var p = map.getPlayer(1);
+			
+			var b = new Bomb({owner: p});
 
 
 			Array.prototype.remove = function(from, to) {
