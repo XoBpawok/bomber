@@ -22,7 +22,7 @@
 					y: 0
 				},
 				type: 0,
-				destroyable: -1,
+				destroyable: 1,
 				initialize: function(opts) {
 					this.type = opts.type;
 				}
@@ -30,13 +30,12 @@
 
 			var Cell = Class.create();
 			Cell.prototype = {
-				objects: [],
 				initialize: function (opts) {
+					this.objects = [];
 				}
 			}
 
 			var Map = Class.create({
-				objList: [],
 				cells: [],
 				initialize: function (opts) {
 					if (typeof opts.grid !== 'undefined') {
@@ -44,8 +43,9 @@
 							this.cells[i] = new Array(opts.grid[i].length);
 							for (var j = 0; j < opts.grid[i].length; j++) {
 								this.cells[i][j] = new Cell();
-								this.cells[i][j].objects.push(
-									this.createObj({
+								var self = this;
+								this.cells[i][j].add(
+									self.createObj({
 										type: opts.grid[i][j],
 										position: {
 											x: i,
@@ -90,10 +90,40 @@
 				destroyable: 0
 			});
 
+			Obj.prototype.destroy = function (opts) {
+				delete this;
+			}
+
 			Cell.prototype.destroy = function (opts) {
-				for (var i in this.objects) {
-					return this.objects[i].destroy();
+				if (!this.hasUndestroyable()) {
+					for (var i = 0; i < this.objects.length; i++) {
+						this.objects[i].destroy(opts);
+					};
+					console.log('all block at cell ' + opts.position.x + '|' + opts.position.y + ' are destroyed');
+					return true;
 				}
+				return false;
+			}
+
+			Cell.prototype.add = function (obj) {
+				this.objects.push(obj);
+			}
+
+			Cell.prototype.remove = function (obj) {
+				this.objects.remove(this.objects.indexOf(obj), this.objects.indexOf(obj));
+			}
+
+			Cell.prototype.hasUndestroyable = function () {
+				for (var i = 0; i < this.objects.length; i++) {
+					if (!this.objects[i].destroyable) {
+						return true;
+					}
+				}
+				return false;
+			}
+
+			Cell.prototype.getBlocks = function () {
+				return this.objects;
 			}
 
 			Map.prototype.createObj = function (opts) {
@@ -130,8 +160,13 @@
 				}
 			}
 
-			Map.prototype.getLine = function () {
-
+			Map.prototype.getCell = function (position) {
+				if (typeof this.cells === 'undefined') {
+					console.log('there is not cell with coordinates ' + position.x + '|' + position.y);
+					return null;
+				} else {
+					return this.cells[this.position.x][this.position.y].getAllBlocks();
+				}
 			}
 
 			Player.prototype.plainBomb = function() {
@@ -153,36 +188,62 @@
 				this.position.y = y;
 			}
 
+			Player.prototype.destroy = function (opts) {
+				console.log('Player is dead from now');
+				if (opts.owner === this) {
+					console.log('it was suicide');
+				}
+			}
+
 
 			Bomb.prototype.explode = function(self) {
 				var player = self.owner;
-				var mapGrid = player.map.cells;
+				var cells = player.map.cells;
 				var x = this.position.x,
 					y = this.position.y;
 
 				console.log('booom!');
-/*
+
+				if (!cells[x][y].hasUndestroyable()) {
+					cells[x][y].destroy(this);
+				}
+
 				for (var i = 1; i < player.bombRange + 1; i++) {
-					if (x > 0 && x < mapGrid.length - 1) {
-						mapGrid.[x - i][y] = mapGrid.[x - i][y].Destroy();
+					if ((x - i) > 0 && (x - i) < cells.length - 1) {
+						if (!cells[x - i][y].hasUndestroyable()) {
+							cells[x - i][y].destroy(this);
+						} else {
+							break;
+						}
 					}
 				}
 				for (var i = 1; i < player.bombRange + 1; i++) {
-					if (x > 0 && x < mapGrid.length - 1) {
-						mapGrid.[x + i][y] = mapGrid.[x + i][y].Destroy();
+					if ((x + i) > 0 && (x + i) < cells.length - 1) {
+						if (!cells[x + i][y].hasUndestroyable()) {
+							cells[x + i][y].destroy(this);
+						} else {
+							break;
+						}
 					}
 				}
 				for (var i = 1; i < player.bombRange + 1; i++) {
-					if (x > 0 && x < mapGrid[x].length - 1) {
-						mapGrid.[x][y - 1] = mapGrid.[x][y - 1].Destroy();
+					if ((y - 1) > 0 && (y - 1) < cells[x].length - 1) {
+						if (!cells[x][y - 1].hasUndestroyable()) {
+							cells[x][y - 1].destroy(this);
+						} else {
+							break;
+						}
 					}
 				}
 				for (var i = 1; i < player.bombRange + 1; i++) {
-					if (x > 0 && x < mapGrid[x].length - 1) {
-						mapGrid.[x][y + 1] = mapGrid.[x][y + 1].Destroy();
+					if ((y + 1) > 0 && (y + 1) < cells[x].length - 1) {
+						if (!cells[x][y + 1].hasUndestroyable()) {
+							cells[x][y + 1].destroy(this);
+						} else {
+							break;
+						}
 					}
 				}
-*/
 
 
 				console.log('bomb exploded');
@@ -197,7 +258,7 @@
 				grid: [
 					['player',0,0,0,0,0,0,0,0,0,0],
 					[0,'sepBlock',0,'sepBlock',0,'sepBlock',0,'sepBlock',0,'sepBlock',0],
-					['sepBlock','brick','brick','brick','brick','brick','brick','brick','brick','brick','brick'],
+					[0,'brick','brick','brick','brick','brick','brick','brick','brick','brick','brick'],
 					['brick','sepBlock',0,'sepBlock',0,'sepBlock',0,'sepBlock',0,'sepBlock',0],
 					['brick','brick','brick','brick','brick','brick','brick','brick','brick','brick','brick'],
 					[0,'sepBlock',0,'sepBlock',0,'sepBlock',0,'sepBlock',0,'sepBlock',0],
