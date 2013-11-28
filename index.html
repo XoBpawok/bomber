@@ -90,7 +90,7 @@
 			Obj.prototype.destroy = function (opts) {
 				//it's dummy function
 				console.log('obj destroy');
-			}		
+			}
 
 			Block.prototype.destroy = function (opts) {
 				console.log('block destroy');
@@ -108,8 +108,8 @@
 				if (!this.hasUndestroyable()) {
 					for (var i = 0; i < this.objects.length; i++) {
 						this.objects[i].destroy(opts);
-						delete this.objects[i];
-						//this.add(new Obj(opts));
+						this.objects.remove(i,i);
+						this.add(new Obj(opts));
 					};
 					console.log('all blocks at cell ' + opts.position.x + '|' + opts.position.y + ' are destroyed');
 					return true;
@@ -128,6 +128,15 @@
 			Cell.prototype.hasUndestroyable = function () {
 				for (var i = 0; i < this.objects.length; i++) {
 					if (!this.objects[i].destroyable) {
+						return true;
+					}
+				}
+				return false;
+			}
+
+			Cell.prototype.hasBlock = function () {
+				for (var i = 0; i < this.objects.length; i++) {
+					if (this.objects[i] instanceof Block) {
 						return true;
 					}
 				}
@@ -216,6 +225,7 @@
 				var cells = player.map.cells;
 				var x = this.position.x,
 					y = this.position.y,
+					cellHasBlock = false,
 					i;
 
 				console.log('booom!');
@@ -230,13 +240,25 @@
 				for (i = 1; i < player.bombRange + 1; i++) {
 					if ((x - i) > 0 && (x - i) < cells.length - 1) {
 						if (!cells[x - i][y].hasUndestroyable()) {
-							cells[x - i][y].destroy({
-								bomb: this,
-								position: {
-									x: x - i,
-									y: y
-								}
-							});
+							if (cells[x - i][y].hasBlock()) {
+								cells[x - i][y].destroy({
+									bomb: this,
+									position: {
+										x: x - i,
+										y: y
+									}
+								});
+								break;
+							} else {
+								cells[x - i][y].destroy({
+									bomb: this,
+									position: {
+										x: x - i,
+										y: y
+									}
+								});
+							}
+
 						} else {
 							break;
 						}
@@ -245,13 +267,24 @@
 				for (i = 1; i < player.bombRange + 1; i++) {
 					if ((x + i) > 0 && (x + i) < cells.length - 1) {
 						if (!cells[x + i][y].hasUndestroyable()) {
-							cells[x + i][y].destroy({
-								bomb: this,
-								position: {
-									x: x + i,
-									y: y
-								}
-							});
+							if (cells[x + i][y].hasBlock()) {
+								cells[x + i][y].destroy({
+									bomb: this,
+									position: {
+										x: x + i,
+										y: y
+									}
+								});
+								break;
+							} else {
+								cells[x + i][y].destroy({
+									bomb: this,
+									position: {
+										x: x + i,
+										y: y
+									}
+								});
+							}
 						} else {
 							break;
 						}
@@ -260,13 +293,24 @@
 				for (i = 1; i < player.bombRange + 1; i++) {
 					if ((y - i) > 0 && (y - i) < cells[x].length - 1) {
 						if (!cells[x][y - i].hasUndestroyable()) {
-							cells[x][y - i].destroy({
-								bomb: this,
-								position: {
-									x: x,
-									y: y - i
-								}
-							});
+							if (cells[x][y - i].hasBlock()) {
+								cells[x][y - i].destroy({
+									bomb: this,
+									position: {
+										x: x,
+										y: y - i
+									}
+								});
+								break;
+							} else {
+								cells[x][y - i].destroy({
+									bomb: this,
+									position: {
+										x: x,
+										y: y - i
+									}
+								});
+							}
 						} else {
 							break;
 						}
@@ -275,19 +319,29 @@
 				for (i = 1; i < player.bombRange + 1; i++) {
 					if ((y + i) > 0 && (y + i) < cells[x].length - 1) {
 						if (!cells[x][y + i].hasUndestroyable()) {
-							cells[x][y + i].destroy({
-								bomb: this,
-								position: {
-									x: x,
-									y: y + i
-								}
-							});
+							if (cells[x][y + i].hasBlock()) {
+								cells[x][y + i].destroy({
+									bomb: this,
+									position: {
+										x: x,
+										y: y + i
+									}
+								});
+								break;
+							} else {
+								cells[x][y + i].destroy({
+									bomb: this,
+									position: {
+										x: x,
+										y: y + i
+									}
+								});
+							}
 						} else {
 							break;
 						}
 					}
 				}
-
 
 				console.log('bomb exploded');
 
@@ -301,7 +355,7 @@
 				grid: [
 					['player',0,0,0,0,0,0,0,0,0,0],
 					[0,'sepBlock',0,'sepBlock',0,'sepBlock',0,'sepBlock',0,'sepBlock',0],
-					[0,'brick','brick','brick','brick','brick','brick','brick','brick','brick','brick'],
+					['brick','brick','brick','brick','brick','brick','brick','brick','brick','brick','brick'],
 					['brick','sepBlock',0,'sepBlock',0,'sepBlock',0,'sepBlock',0,'sepBlock',0],
 					['brick','brick','brick','brick','brick','brick','brick','brick','brick','brick','brick'],
 					[0,'sepBlock',0,'sepBlock',0,'sepBlock',0,'sepBlock',0,'sepBlock',0],
@@ -321,6 +375,7 @@
 				var rest = this.slice((to || from) + 1 || this.length);
 				this.length = from < 0 ? this.length + from : from;
 				return this.push.apply(this, rest);
+
 			};
 
 			function clone(obj) {
