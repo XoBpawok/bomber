@@ -7,99 +7,111 @@
 			bomberman
 		</title>
 		<link rel="stylesheet" href="">
-		<script src='prototype.js'>
-				
-		</script>
 	</head>
 	<body>
 		<canvas width='1000' height='500'>
 		</canvas>
 		<script type="text/javascript">
-			var Obj = Class.create();
-			Obj.prototype = {
-				position: {
-					x: 0,
-					y: 0
-				},
-				type: 0,
-				destroyable: 1,
-				initialize: function(opts) {
-					this.type = opts.type;
-				}
+
+
+			function Obj (opts) {
+				this.type = 0;
+				this.destroyable = 1;
 			}
 
-			var Cell = Class.create();
-			Cell.prototype = {
-				initialize: function (opts) {
-					this.objects = [];
-				}
+			function Cell (opts) {
+				this.objects = [];
 			}
 
-			var Map = Class.create({
-				cells: [],
-				initialize: function (opts) {
-					if (typeof opts.grid !== 'undefined') {
-						for (var i = 0; i < opts.grid.length; i++) {
-							this.cells[i] = new Array(opts.grid[i].length);
-							for (var j = 0; j < opts.grid[i].length; j++) {
-								this.cells[i][j] = new Cell();
-								var self = this;
-								this.cells[i][j].add(
-									self.createObj({
-										type: opts.grid[i][j],
-										position: {
-											x: i,
-											y: j
-										}
-									})
-								);
-							};
+			function Map(opts) {
+				this.cells = [];
+				if (typeof opts.grid !== 'undefined') {
+					for (var i = 0; i < opts.grid.length; i++) {
+						this.cells[i] = new Array(opts.grid[i].length);
+						for (var j = 0; j < opts.grid[i].length; j++) {
+							this.cells[i][j] = new Cell();
+							var self = this;
+							this.cells[i][j].add(
+								self.createObj({
+									type: opts.grid[i][j],
+									position: {
+										x: i,
+										y: j
+									}
+								})
+							);
 						};
-					}
-					
+					};
 				}
-			});
+			}
 
-			var Player = Class.create(Obj, {
-				destroyable: 1,
-				bombLimit: 2,
-				bombPlained: [],
-				bombRange: 3
-			});
+			function Player(opts) {
+				this.destroyable = 1;
+				this.bombLimit = 2;
+				this.bombPlained = [];
+				this.bombRange = 3;
+				this.type = 'player';
 
-			var Bomb = Class.create(Obj, {
-				initialize: function(opts) {
-					this.owner = opts.owner;
-					this.position = Object.clone(this.owner.position);
-					var self = this;
-					this.owner.bombPlained.push(self);
-					setTimeout(function () {
-						self.explode(self)
-					}, this.timer);
-				},
-				destroyable: 1,
-				owner: {},
-				timer: 3000
-			});
+				this.position = opts.position;
+			}
 
-			var Block = Class.create(Obj, {
-				destroyable: 1
-			});
+			function Bomb(opts) {
+				this.owner = opts.owner;
+				this.power = 1;
+				this.timer = 3000;
+				this.position = clone(this.owner.position);
+				var self = this;
+				this.owner.bombPlained.push(self);
+				setTimeout(function () {
+					self.explode(self)
+				}, this.timer);
+			}
 
-			var BlockSeparator = Class.create(Block, {
-				destroyable: 0
-			});
+			function Block(opts) {
+				this.destroyable = 1;
+			}
+
+
+			function BlockSeparator(opts) {
+				this.destroyable = 1;
+				this.type = opts.type;
+			}
+
+			BlockSeparator.prototype = new Block();
+			BlockSeparator.prototype.constructor = BlockSeparator;
+
+			function BlockBrick(opts) {
+				this.destroyable = 1;
+			}
+
+			BlockBrick.prototype = new Block();
+			BlockBrick.prototype.constructor = BlockBrick;
 
 			Obj.prototype.destroy = function (opts) {
-				delete this;
+				//it's dummy function
+				console.log('obj destroy');
+			}		
+
+			Block.prototype.destroy = function (opts) {
+				console.log('block destroy');
 			}
+
+			BlockBrick.prototype.oldDestroy = BlockBrick.prototype.destroy;
+
+			BlockBrick.prototype.destroy = function (opts) {
+				console.log('brick destroy');
+				this.oldDestroy(opts);
+			}
+
 
 			Cell.prototype.destroy = function (opts) {
 				if (!this.hasUndestroyable()) {
 					for (var i = 0; i < this.objects.length; i++) {
 						this.objects[i].destroy(opts);
+						delete this.objects[i];
+						//this.add(new Obj(opts));
 					};
-					console.log('all block at cell ' + opts.position.x + '|' + opts.position.y + ' are destroyed');
+					console.log('all blocks at cell ' + opts.position.x + '|' + opts.position.y + ' are destroyed');
 					return true;
 				}
 				return false;
@@ -137,6 +149,9 @@
 						break;
 					case 'sepBlock':
 						obj = new BlockSeparator(opts);
+						break;
+					case 'brick':
+						obj = new BlockBrick(opts);
 						break;
 					default:
 						obj = new Obj(opts);
@@ -190,7 +205,7 @@
 
 			Player.prototype.destroy = function (opts) {
 				console.log('Player is dead from now');
-				if (opts.owner === this) {
+				if (opts.bomb.owner === this) {
 					console.log('it was suicide');
 				}
 			}
@@ -200,45 +215,73 @@
 				var player = self.owner;
 				var cells = player.map.cells;
 				var x = this.position.x,
-					y = this.position.y;
+					y = this.position.y,
+					i;
 
 				console.log('booom!');
 
 				if (!cells[x][y].hasUndestroyable()) {
-					cells[x][y].destroy(this);
+					cells[x][y].destroy({
+						bomb: this,
+						position: this.position
+					});
 				}
 
-				for (var i = 1; i < player.bombRange + 1; i++) {
+				for (i = 1; i < player.bombRange + 1; i++) {
 					if ((x - i) > 0 && (x - i) < cells.length - 1) {
 						if (!cells[x - i][y].hasUndestroyable()) {
-							cells[x - i][y].destroy(this);
+							cells[x - i][y].destroy({
+								bomb: this,
+								position: {
+									x: x - i,
+									y: y
+								}
+							});
 						} else {
 							break;
 						}
 					}
 				}
-				for (var i = 1; i < player.bombRange + 1; i++) {
+				for (i = 1; i < player.bombRange + 1; i++) {
 					if ((x + i) > 0 && (x + i) < cells.length - 1) {
 						if (!cells[x + i][y].hasUndestroyable()) {
-							cells[x + i][y].destroy(this);
+							cells[x + i][y].destroy({
+								bomb: this,
+								position: {
+									x: x + i,
+									y: y
+								}
+							});
 						} else {
 							break;
 						}
 					}
 				}
-				for (var i = 1; i < player.bombRange + 1; i++) {
-					if ((y - 1) > 0 && (y - 1) < cells[x].length - 1) {
-						if (!cells[x][y - 1].hasUndestroyable()) {
-							cells[x][y - 1].destroy(this);
+				for (i = 1; i < player.bombRange + 1; i++) {
+					if ((y - i) > 0 && (y - i) < cells[x].length - 1) {
+						if (!cells[x][y - i].hasUndestroyable()) {
+							cells[x][y - i].destroy({
+								bomb: this,
+								position: {
+									x: x,
+									y: y - i
+								}
+							});
 						} else {
 							break;
 						}
 					}
 				}
-				for (var i = 1; i < player.bombRange + 1; i++) {
-					if ((y + 1) > 0 && (y + 1) < cells[x].length - 1) {
-						if (!cells[x][y + 1].hasUndestroyable()) {
-							cells[x][y + 1].destroy(this);
+				for (i = 1; i < player.bombRange + 1; i++) {
+					if ((y + i) > 0 && (y + i) < cells[x].length - 1) {
+						if (!cells[x][y + i].hasUndestroyable()) {
+							cells[x][y + i].destroy({
+								bomb: this,
+								position: {
+									x: x,
+									y: y + i
+								}
+							});
 						} else {
 							break;
 						}
@@ -279,6 +322,15 @@
 				this.length = from < 0 ? this.length + from : from;
 				return this.push.apply(this, rest);
 			};
+
+			function clone(obj) {
+			    if (null == obj || "object" != typeof obj) return obj;
+			    var copy = obj.constructor();
+			    for (var attr in obj) {
+			        if (obj.hasOwnProperty(attr)) copy[attr] = obj[attr];
+			    }
+			    return copy;
+			}
 		</script>
 	</body>
 
